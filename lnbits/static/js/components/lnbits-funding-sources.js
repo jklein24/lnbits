@@ -116,6 +116,17 @@ Vue.component('lnbits-funding-sources', {
           }
         ],
         [
+          'LightsparkWallet',
+          'Lightspark',
+          {
+            lightspark_api_endpoint: 'Endpoint',
+            lightspark_api_token_id: 'API Token ID',
+            lightspark_api_token_secret: 'API Token Secret',
+            lightspark_node_id: 'Node ID',
+            lightspark_node_password: 'Node Password'
+          }
+        ],
+        [
           'PhoenixdWallet',
           'Phoenixd',
           {

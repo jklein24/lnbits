@@ -92,6 +92,17 @@ For the invoice to work you must have a publicly accessible URL in your LNbits. 
 - `ZBD_API_ENDPOINT`: https://api.zebedee.io/v0/
 - `ZBD_API_KEY`: ZBDApiKey
 
+### Lightspark
+
+For the invoice to work you must have a publicly accessible URL in your LNbits. No manual webhook setting is necessary. You can generate a Lightspark API Key here: https://app.lightspark.com/api-config
+
+- `LNBITS_BACKEND_WALLET_CLASS`: **LightsparkWallet**
+- `LIGHTSPARK_API_ENDPOINT`: https://api.lightspark.com/graphql/server/2023-09-13
+- `LIGHTSPARK_API_TOKEN_ID`: <Your API TOKEN ID>
+- `LIGHTSPARK_API_TOKEN_SECRET`: <Your API TOKEN SECRET>
+- `LIGHTSPARK_NODE_ID`: <Your NODE ID>
+- `LIGHTSPARK_NODE_PASSWORD`: <Your NODE PASSWORD>
+
 ### Phoenixd
 
 For the invoice to work you must have a publicly accessible URL in your LNbits. You can get a phoenixd API key from the install
