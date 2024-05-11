@@ -32,13 +32,13 @@ class LightsparkWallet(Wallet):
             raise ValueError(
                 "cannot initialize LightsparkWallet: missing lightspark_api_endpoint"
             )
-        if not settings.lightsaprk_api_token_id:
+        if not settings.lightspark_api_token_id:
             raise ValueError(
-                "cannot initialize LightsparkWallet: missing lightspark_access_token"
+                "cannot initialize LightsparkWallet: missing lightspark_api_token_id"
             )
-        if not settings.lightsaprk_api_token_secret:
+        if not settings.lightspark_api_token_secret:
             raise ValueError(
-                "cannot initialize LightsparkWallet: missing lightsaprk_api_token_secret"
+                "cannot initialize LightsparkWallet: missing lightspark_api_token_secret"
             )
         if not settings.lightspark_node_id:
             raise ValueError(
@@ -51,8 +51,8 @@ class LightsparkWallet(Wallet):
 
         self.endpoint = self.normalize_endpoint(settings.lightspark_api_endpoint)
         self.client = LightsparkSyncClient(
-            settings.lightsaprk_api_token_id,
-            settings.lightsaprk_api_token_secret,
+            settings.lightspark_api_token_id,
+            settings.lightspark_api_token_secret,
             self.endpoint,
         )
         self.client.recover_node_signing_key(

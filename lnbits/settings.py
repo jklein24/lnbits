@@ -231,8 +231,8 @@ class AlbyFundingSource(LNbitsSettings):
 
 class LightsparkFundingSource(LNbitsSettings):
     lightspark_api_endpoint: Optional[str] = Field(default="https://api.lightspark.com/graphql/server/2023-09-13")
-    lightsaprk_api_token_id: Optional[str] = Field(default=None)
-    lightsaprk_api_token_secret: Optional[str] = Field(default=None)
+    lightspark_api_token_id: Optional[str] = Field(default=None)
+    lightspark_api_token_secret: Optional[str] = Field(default=None)
     lightspark_node_id: Optional[str] = Field(default=None)
     lightspark_node_password: Optional[str] = Field(default=None)
 
