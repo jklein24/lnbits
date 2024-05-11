@@ -89,7 +89,7 @@ class LightsparkWallet(Wallet):
     ) -> InvoiceResponse:
         # TODO: Support description_hash and unhashed_description in Lightspark API.
         try:
-            invoice = self.client.create_invoice(self.node_id, amount, memo)
+            invoice = self.client.create_invoice(self.node_id, amount * 1000, memo)
             return InvoiceResponse(
                 True, invoice.id, invoice.data.encoded_payment_request, None
             )
@@ -127,13 +127,13 @@ class LightsparkWallet(Wallet):
             return PaymentStatus(
                 invoice.status == PaymentRequestStatus.CLOSED
                 and invoice.amount_paid is not None
-                and invoice.amount_paid > 0,
+                and invoice.amount_paid.original_value > 0,
                 # Note: The Lightspark SDK only exposes fees and preimage for outgoing payments.
                 None,
                 None,
             )
         except Exception as exc:
-            logger.error("Error getting invoice status: {exc}")
+            logger.error(f"Error getting invoice status for {checking_id}: {exc}")
             return PaymentPendingStatus()
 
     async def get_payment_status(self, checking_id: str) -> PaymentStatus:
