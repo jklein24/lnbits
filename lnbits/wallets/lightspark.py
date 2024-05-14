@@ -1,14 +1,14 @@
 import asyncio
-from typing import AsyncGenerator, Dict, Optional
+from typing import AsyncGenerator, Optional
 
 from lightspark import (
     Invoice,
     LightsparkNode,
     LightsparkSyncClient,
-    OutgoingPayment,
     PaymentRequestStatus,
     TransactionStatus,
 )
+from bolt11.decode import decode as bolt11_decode
 from lightspark.utils.currency_amount import amount_as_msats
 from loguru import logger
 
@@ -100,9 +100,11 @@ class LightsparkWallet(Wallet):
     async def pay_invoice(self, bolt11: str, fee_limit_msat: int) -> PaymentResponse:
         try:
             payment = self.client.pay_invoice(self.node_id, bolt11, 60, fee_limit_msat)
+            decoded_payment = bolt11_decode(bolt11)
+            payment.payment_request_data.encoded_payment_request
             return PaymentResponse(
                 payment.status == TransactionStatus.SUCCESS,
-                payment.id,
+                decoded_payment.payment_hash,
                 amount_as_msats(payment.fees) if payment.fees is not None else None,
                 payment.payment_preimage,
                 (
@@ -138,14 +140,18 @@ class LightsparkWallet(Wallet):
 
     async def get_payment_status(self, checking_id: str) -> PaymentStatus:
         try:
-            payment = self.client.get_entity(checking_id, OutgoingPayment)
-            if payment is None:
+            payments = self.client.outgoing_payments_for_payment_hash(checking_id)
+            if payments is None or len(payments) == 0:
                 return PaymentPendingStatus()
 
             return PaymentStatus(
-                payment.status == TransactionStatus.SUCCESS,
-                amount_as_msats(payment.fees) if payment.fees is not None else None,
-                payment.payment_preimage,
+                payments[0].status == TransactionStatus.SUCCESS,
+                (
+                    amount_as_msats(payments[0].fees)
+                    if payments[0].fees is not None
+                    else None
+                ),
+                payments[0].payment_preimage,
             )
         except Exception as e:
             logger.error(f"Error getting payment status: {e}")
