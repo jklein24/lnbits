@@ -1234,12 +1234,12 @@ files = [
 
 [[package]]
 name = "lightspark"
-version = "2.7.0"
+version = "2.7.1"
 description = "Python SDK for the Lightspark API"
 optional = false
 python-versions = "*"
 files = [
-    {file = "lightspark-2.7.0.zip", hash = "sha256:8504c460d23df400fabd468bc3598ec8c3196312c3b7ba892b5db1862dd2fbc9"},
+    {file = "lightspark-2.7.1.zip", hash = "sha256:a84d320ffc09b08e030d18a637890dbc6f35596f972f2958a05e6d4cef21c6e9"},
 ]
 
 [package.dependencies]
@@ -1540,13 +1540,13 @@ signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
 
 [[package]]
 name = "openai"
-version = "1.29.0"
+version = "1.30.1"
 description = "The official Python library for the openai API"
 optional = false
 python-versions = ">=3.7.1"
 files = [
-    {file = "openai-1.29.0-py3-none-any.whl", hash = "sha256:c61cd12376c84362d406341f9e2f9a9d6b81c082b133b44484dc0f43954496b1"},
-    {file = "openai-1.29.0.tar.gz", hash = "sha256:d5a769f485610cff8bae14343fa45a8b1d346be3d541fa5b28ccd040dbc8baf8"},
+    {file = "openai-1.30.1-py3-none-any.whl", hash = "sha256:c9fb3c3545c118bbce8deb824397b9433a66d0d0ede6a96f7009c95b76de4a46"},
+    {file = "openai-1.30.1.tar.gz", hash = "sha256:4f85190e577cba0b066e1950b8eb9b11d25bc7ebcc43a86b326ce1bfa564ec74"},
 ]
 
 [package.dependencies]
@@ -3213,4 +3213,4 @@ liquid = ["wallycore"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10 | ^3.9"
-content-hash = "45f7ddd1b73d939f8cb2989178c0e6ab8df019a84acd67043cc63c78ceeff26a"
+content-hash = "4e4fd1da2efc5744e0592a5c5f600ec960ff52bb021ad999ade386246551af19"
